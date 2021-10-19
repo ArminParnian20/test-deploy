@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import Taskes from './Components/Taskes';
+import Taskes from './Components/Taskes';  
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AddNewTask from './Components/AddNewTask';
+import SimpleContext from './Context';
+import Header from './Components/Header';
+
 class App extends Component{
 state={
     showTask:false,
     taskes:[],
-    task:'',
-    
+    task:''
 }
 newTask=(event)=>{
      this.setState({task:event.target.value})
@@ -60,37 +63,28 @@ Editbtn=(id)=>{
     this.setState({taskes:alltask})
 }
 render(){
-        let taskTag=null;   
+        let taskTag=null;  
         const {taskes,showTask}=this.state;
-        let badgeStyle='';
-        if(taskes.length >3){badgeStyle='bg-success';}
-        if(taskes.length===2 || taskes.length===3){badgeStyle='bg-warning';}
-        if(taskes.length <2){badgeStyle='bg-danger'}
-
         if(this.state.showTask){
-                taskTag=<Taskes taskes={taskes} editbBtn={this.Editbtn} changeTask={this.handelChangeTask} deletTask={this.handlDeletetask}></Taskes>
-        }
-        return(
-        <div className="container pt-2 rtl w-100 text-center bg-secondary">
-            <h1 className="alert alert-danger m-0">برنامه روزانه</h1>
-            <h2 className="alert-info m-4 fw-bolder rtl alert"> کار وجود دارد<span className={`badge m-1 rounded-pill ${badgeStyle}`}>{`${this.state.taskes.length}`}</span></h2>
-          <form onSubmit={event=>event.preventDefault()}>
-           <div className="input-group container w-75 mb-3">
-                <button className="btn btn-primary" onClick={this.addtask}>افزودن</button>
-                <input type="text" className="text-end form-control" value={this.state.task} placeholder="کار جدید" onChange={this.newTask}></input>
-            </div>
-          </form>
-            <ToastContainer draggable/>
-        
-            <div>
+            taskTag=<Taskes taskes={taskes} editbBtn={this.Editbtn} changeTask={this.handelChangeTask} deletTask={this.handlDeletetask}></Taskes>
+        }    
+                return(
+                    <SimpleContext.Provider
+                    value={{state:this.state,handelChangeTask:this.handelChangeTask}}
+                    >
+            <div className="container pt-2 rtl w-100 text-center bg-secondary">
+             <Header></Header>
+          <ToastContainer draggable/>
+            <AddNewTask  addtask={this.addtask}  newTask={this.newTask}  task={this.state.task }/>
                  {taskTag}
-            </div>
             <div>
             <button className={`btn btn-lg notify  m-3  ${showTask? 'btn-success':'btn-warning'}`} onClick={this.handelShowTask}>نمایش</button>
             </div>
-         
-        </div>
-    )
+             </div>
+
+                    </SimpleContext.Provider>
+
+)
 }
 
 }
