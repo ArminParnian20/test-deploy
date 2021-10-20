@@ -12,7 +12,7 @@ const Task = ({mytask,deleted,time,showedit,changed,editbBtn}) => {
     draggable:true
 });}
   return ( 
-    <div className="card text-center ">
+    <div className="card text-center mb-2 ">
       <div className="card-header">
         <h5> </h5>
       </div>  
@@ -24,7 +24,7 @@ const Task = ({mytask,deleted,time,showedit,changed,editbBtn}) => {
     </input>
     </div>
     <ToastContainer draggable/>
-  <div className="btn-group w-50 m-auto" role="group" aria-label="Basic outlined example">
+  <div className="btn-group w-50 mb-4 m-auto" role="group" aria-label="Basic outlined example">
       <i className="fas fa-trash-alt btn btn-outline-primary"onClick={warn}></i>
       <i className="fas fa-edit btn btn-outline-primary" onClick={editbBtn}></i>
       </div>

@@ -1,19 +1,21 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import Task from './Task';
-
-const Taskes = ({taskes,deletTask,changeTask,editbBtn}) => {
+import SimpleContext from './../Context';
+const Taskes = () => {
+    const context=useContext(SimpleContext);
+    const {taskes}=context;
     return ( 
           <div> 
               {taskes.map(p=>{
                   return(
                       <div>
-                              <Task mytask={p.mytask}
+                    <Task mytask={p.mytask}
                     key={p.id}
                     time={p.time}
-                    deleted={()=>deletTask(p.id)}
-                    changed={(event)=>changeTask(event,p.id)}
+                    deleted={()=>context.handlDeletetask(p.id)}
+                    changed={(event)=>context.handelChangeTask(event,p.id)}
                     showedit={p.editshow}
-                    editbBtn={()=>editbBtn(p.id)}
+                    editbBtn={()=>context.Editbtn(p.id)}
                     ></Task> 
                       </div>
                )
