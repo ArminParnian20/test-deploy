@@ -9,16 +9,15 @@ const App = () => {
     const [getTaskes,setTaskes]=useState([]);
     const [getShowTask,setShowTask]=useState(false);
     const [getTask,setTask]=useState("");
-    
-    const newTask=(event)=>{
+const newTask=(event)=>{
         setTask(event.target.value);
     }
-    const handlDeletetask=(id)=>{
+const handlDeletetask=(id)=>{
       const alltask=[...getTaskes];
       const filtertask=alltask.filter(p=>p.id!==id);
       setTaskes(filtertask);
     }
-    const addtask=()=>{
+const addtask=()=>{
        const taskes=[...getTaskes];
        let time=new Date();
        const task={
@@ -40,16 +39,16 @@ const App = () => {
        }
     
     }
-    const handelShowTask=()=>{
+const handelShowTask=()=>{
        setShowTask(!getShowTask);
     }
-    const handelChangeTask=(event,id)=>{
+const handelChangeTask=(event,id)=>{
          const alltask=[...getTaskes];
          const taskIndex=alltask.findIndex(t=> t.id===id);
          alltask[taskIndex].mytask=event.target.value;
          setTaskes(alltask);
     }
-    const Editbtn=(id)=>{
+const Editbtn=(id)=>{
        const alltask=[...getTaskes];
        const taskIndex=alltask.findIndex(t=> t.id===id);
        if(alltask[taskIndex].editshow===`none`){
@@ -68,7 +67,7 @@ const App = () => {
         <SimpleContext.Provider
         value={{taskes:getTaskes,task:getTask,addtask:addtask,newTask:newTask,handelChangeTask:handelChangeTask,
         handlDeletetask:handlDeletetask,Editbtn:Editbtn}}>
-            <div className='container text-center bg-dark'>
+        <div className='container text-center bg-dark'>
         <Header></Header> 
         <AddNewTask/>
         <button className={`btn btn-lg notify  m-3 ${getShowTask? 'btn-success':'btn-warning'}`} onClick={handelShowTask}>نمایش</button>
@@ -78,7 +77,6 @@ const App = () => {
         </SimpleContext.Provider>
      );
 }
- 
 export default App;
 
  

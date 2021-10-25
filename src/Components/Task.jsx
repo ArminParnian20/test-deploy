@@ -12,12 +12,12 @@ const Task = ({mytask,deleted,time,showedit,changed,editbBtn}) => {
     draggable:true
 });}
   return ( 
-    <div className="card text-center mb-2 ">
+    <div className="card text-center mb-3">
       <div className="card-header">
         <h5> </h5>
       </div>  
       <div className="card-body">
-        <p className="card-text">{`${mytask}`}</p>
+        <p className="card-text fw-bold">{`${mytask}`}</p>
         </div> 
       <div className={`edit-box`} style={{display:`${showedit}`}}>
     <input type="text" className="p-2 m-2 rounded-3 w-75 text-end lead fs-6" value={`${mytask}`} onChange={changed}>
