@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import AddNewTask from './Components/AddNewTask';
 import SimpleContext from './Context';
 import Header from './Components/Header';
+import Bazinga from './HOC/Bazinga';
 const App = () => {
     const [getTaskes,setTaskes]=useState([]);
     const [getShowTask,setShowTask]=useState(false);
@@ -64,20 +65,25 @@ const Editbtn=(id)=>{
         taskTag=<Taskes></Taskes>
     } 
     return ( 
+        <div>
+
         <SimpleContext.Provider
         value={{taskes:getTaskes,task:getTask,addtask:addtask,newTask:newTask,handelChangeTask:handelChangeTask,
         handlDeletetask:handlDeletetask,Editbtn:Editbtn}}>
-        <div className='container text-center bg-dark'>
+        {/* <Toplearn classes='container text-center bg-dark'> */}
+     
         <Header></Header> 
         <AddNewTask/>
         <button className={`btn btn-lg notify  m-3 ${getShowTask? 'btn-success':'btn-warning'}`} onClick={handelShowTask}>نمایش</button>
         {taskTag}
-        </div>
+  
         <ToastContainer></ToastContainer>
+            {/* </Toplearn> */}
         </SimpleContext.Provider>
+        </div>
      );
 }
-export default App;
+export default Bazinga(App);
 
  
     
