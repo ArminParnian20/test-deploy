@@ -1,12 +1,9 @@
 import React,{useContext} from 'react';
 import Task from './Task';
-import SimpleContext from './../Context';
 const Taskes = () => {
-    const context=useContext(SimpleContext);
-    const {taskes}=context;
     return ( 
           <div> 
-              {taskes.map(p=>{
+              {/* {taskes.map(p=>{
                   return(
                       <div>
                     <Task mytask={p.mytask}
@@ -20,7 +17,7 @@ const Taskes = () => {
                       </div>
                )
                   })
-              }
+              } */}
           </div>
           
      );
